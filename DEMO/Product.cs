@@ -11,7 +11,8 @@ namespace DEMO
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -40,5 +41,7 @@ namespace DEMO
         public virtual ProductManufacturer ProductManufacturer { get; set; }
         public virtual ProductSupplier ProductSupplier { get; set; }
         public virtual UnitType UnitType { get; set; }
-    }
+		[NotMapped]
+		public string ProductPhotoFromResources => "C:\\Users\\latdi\\source\\repos\\DEMO\\DEMO\\Resource\\" + ProductPhoto;
+	}
 }

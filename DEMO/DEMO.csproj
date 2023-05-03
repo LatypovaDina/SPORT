@@ -17,7 +17,6 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -33,7 +32,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -84,11 +82,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-
     <Compile Include="CAPTCHA.xaml.cs">
       <DependentUpon>CAPTCHA.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="Gost.xaml.cs">
       <DependentUpon>Gost.xaml</DependentUpon>
     </Compile>
@@ -118,6 +114,7 @@
     <Compile Include="ProductManufacturer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Products.cs" />
     <Compile Include="ProductSupplier.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -134,12 +131,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-
     <Page Include="CAPTCHA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-
     <Page Include="Client.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +214,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\picture.png" />
+    <Resource Include="Resource\B538G6.jpg" />
+    <Resource Include="Resource\D648N7.jpg" />
+    <Resource Include="Resource\D830R5.jpg" />
+    <Resource Include="Resource\E324U7.jpg" />
+    <Resource Include="Resource\F735B6.jpg" />
+    <Resource Include="Resource\F746E6.jpg" />
+    <Resource Include="Resource\F937G4.jpg" />
+    <Resource Include="Resource\G403T5.jpg" />
+    <Resource Include="Resource\G598Y6.jpg" />
+    <Resource Include="Resource\А112Т4.jpg" />
     <Resource Include="logo.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -234,7 +240,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
@@ -247,7 +252,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

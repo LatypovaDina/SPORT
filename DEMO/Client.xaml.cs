@@ -27,8 +27,8 @@ namespace DEMO
 			InitializeComponent();
 
 			ue = new user24Entities();
-			ue.Product.Load(); // загружаем данные
-			tovarki.DataContext = ue.Product.ToList(); // устанавливаем привязку к кэшу
+			//ue.Product.Load(); // загружаем данные
+			tovarki.ItemsSource = ue.Product.ToList(); // устанавливаем привязку к кэшу
 			vidacha.ItemsSource = ue.PickupPoint.ToList();
 			all.Text = ue.Product.Count().ToString();
 			kolVo.Text = ue.Product.Count().ToString();
@@ -118,7 +118,7 @@ namespace DEMO
 
 		private void name_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (Convert.ToInt32(skid.Text) > 15)
+			if (Convert.ToInt16(skid.Text) > 15)
 			{
 				name.Background = Brushes.GreenYellow;
 			}
