@@ -30,8 +30,9 @@ namespace DEMO
 			ue.Product.Load(); // загружаем данные
 			tovarki.DataContext = ue.Product.ToList(); // устанавливаем привязку к кэшу
 			vidacha.ItemsSource = ue.PickupPoint.ToList();
+			all.Text = ue.Product.Count().ToString();
+			kolVo.Text = ue.Product.Count().ToString();
 
-			
 		}
 		
 		private void viborka()
@@ -87,43 +88,37 @@ namespace DEMO
 		private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount < 10).ToList();
-
-			kolVo.Text = tovarki.Items.Count.ToString();
-
+			kolVo.Text = ue.Product.Where(x => x.ProductMaxDiscountAmount < 10).Count().ToString();
 		}
 
 		private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount < 15 && x.ProductMaxDiscountAmount > 10).ToList();
-
-			kolVo.Text = tovarki.Items.Count.ToString();
-
+			kolVo.Text = ue.Product.Where(x => x.ProductMaxDiscountAmount < 15 && x.ProductMaxDiscountAmount > 10).Count().ToString();
 		}
 
 		private void ComboBoxItem_Selected_2(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount > 15).ToList();
-
-			kolVo.Text = tovarki.Items.Count.ToString();
+			kolVo.Text = ue.Product.Where(x => x.ProductMaxDiscountAmount > 15).Count().ToString();
 		}
 
 		private void ComboBoxItem_Selected_3(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.ToList();
-			kolVo.Text = tovarki.Items.Count.ToString();
+			kolVo.Text = ue.Product.Count().ToString();
 		}
 		
 
 		private void search_TextChanged(object sender, TextChangedEventArgs e)
 		{
-				tovarki.DataContext = ue.Product.Where(x => x.ProductName == search.Text).ToList();
-			kolVo.Text = tovarki.Items.Count.ToString();
-			
+			tovarki.DataContext = ue.Product.Where(x => x.ProductName == search.Text).ToList();
+			kolVo.Text = ue.Product.Where(x => x.ProductName == search.Text).Count().ToString();
 		}
 
 		private void name_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if (tovarki.SelectedItem == (ue.Product.Where(x => x.ProductMaxDiscountAmount > 15)))
+			if (Convert.ToInt32(skid.Text) > 15)
 			{
 				name.Background = Brushes.GreenYellow;
 			}

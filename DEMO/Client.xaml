@@ -32,35 +32,37 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="оформить заказ" HorizontalAlignment="Left" Margin="554,218,0,0" VerticalAlignment="Top" Height="34" Width="195" Click="Button_Click" Grid.Row="1"/>
-        <Label Content="ID:" HorizontalAlignment="Left" Margin="505,24,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="id" Text="{Binding SelectedItem.ProductID, ElementName=tovarki}" HorizontalAlignment="Left" Margin="608,24,0,0" VerticalAlignment="Top" Height="22" Width="162" Grid.Row="1"/>
-        <Button Content="оформить заказ" HorizontalAlignment="Left" Margin="554,218,0,0" VerticalAlignment="Top" Height="34" Width="195" Click="Button_Click" Grid.Row="1"/>
         <Label Content="ID:" HorizontalAlignment="Left" Margin="476,24,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-       
-        <Label Content="Название:" HorizontalAlignment="Left" Margin="505,47,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="name"  Text="{Binding SelectedItem.ProductName, ElementName=tovarki}" HorizontalAlignment="Left" Margin="608,51,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="162" Grid.Row="1" />
-        <Label Content="Цена:" HorizontalAlignment="Left" Margin="505,70,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="cost"  Text="{Binding SelectedItem.ProductCost, ElementName=tovarki}" HorizontalAlignment="Left" Margin="608,74,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="162" Grid.Row="1" />
-        <Label Content="Описание:" HorizontalAlignment="Left" Margin="505,93,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="opisaniye"   Text="{Binding SelectedItem.ProductDescription, ElementName=tovarki}" HorizontalAlignment="Left" Margin="608,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Grid.Row="1"/>
-        <Label Content="Производитель:" HorizontalAlignment="Left" Margin="505,119,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="proizvod"  Text="{Binding SelectedItem.ProductManufacturerID, ElementName=tovarki}" HorizontalAlignment="Left" Margin="608,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Grid.Row="1" />
+        <TextBox x:Name="id" Text="{Binding SelectedItem.ProductID, ElementName=tovarki}" HorizontalAlignment="Left" Margin="592,24,0,0" VerticalAlignment="Top" Height="22" Width="178" Grid.Row="1"/>
+        <Button Content="оформить заказ" HorizontalAlignment="Left" Margin="554,218,0,0" VerticalAlignment="Top" Height="34" Width="195" Click="Button_Click" Grid.Row="1"/>
+
+        <Label Content="Название:" HorizontalAlignment="Left" Margin="476,47,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="name"  Text="{Binding SelectedItem.ProductName, ElementName=tovarki}" HorizontalAlignment="Left" Margin="592,51,0,0" VerticalAlignment="Top" Width="178" Grid.Row="1" Height="18" />
+        <Label Content="Цена:" HorizontalAlignment="Left" Margin="476,70,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="cost"  Text="{Binding SelectedItem.ProductCost, ElementName=tovarki}" HorizontalAlignment="Left" Margin="592,74,0,0" VerticalAlignment="Top" Width="178" Grid.Row="1" Height="18" />
+        <Label Content="Описание:" HorizontalAlignment="Left" Margin="476,93,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="opisaniye"   Text="{Binding SelectedItem.ProductDescription, ElementName=tovarki}" HorizontalAlignment="Left" Margin="592,97,0,0" VerticalAlignment="Top" Width="178" Grid.Row="1" Height="21"/>
+        <Label Content="Производитель:" HorizontalAlignment="Left" Margin="476,119,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="proizvod"  Text="{Binding SelectedItem.ProductManufacturerID, ElementName=tovarki}" HorizontalAlignment="Left" Margin="592,123,0,0" VerticalAlignment="Top" Width="178" Grid.Row="1" Height="21" />
         <Image x:Name="photo" Source="{Binding SelectedItem.ProductPhoto, ElementName=tovarki}"  HorizontalAlignment="Left" Height="54" Margin="563,74,0,0" VerticalAlignment="Top" Width="166" Grid.RowSpan="2"/>
         <Label x:Name="FIO" Content="ФИО" HorizontalAlignment="Center" Margin="0,13,0,0" VerticalAlignment="Top"/>
-        <Label Content="Скидончик:" HorizontalAlignment="Left" Margin="505,145,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="skid" Text="{Binding SelectedItem.ProductMaxDiscountAmount, ElementName=tovarki}" HorizontalAlignment="Left" Margin="608,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Grid.Row="1"/>
-        <Label Content="Пункт выдачи" HorizontalAlignment="Left" Margin="505,171,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Скидончик:" HorizontalAlignment="Left" Margin="476,145,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="skid" Text="{Binding SelectedItem.ProductMaxDiscountAmount, ElementName=tovarki}" HorizontalAlignment="Left" Margin="592,149,0,0" VerticalAlignment="Top" Width="178" Grid.Row="1" Height="19"/>
+        <Label Content="Пункт выдачи" HorizontalAlignment="Left" Margin="476,171,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <ComboBox x:Name="vidacha" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="25" Margin="632,173,0,0" VerticalAlignment="Top" Width="138" SelectionChanged="ComboBox_SelectionChanged" Grid.Row="1"/>
         <Label Content="Скидки" HorizontalAlignment="Left" Margin="34,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.217,0.098"/>
         <ComboBox HorizontalAlignment="Left" Margin="104,85,0,0" VerticalAlignment="Top" Width="120" >
+            <ComboBoxItem  Content="Весь диапазон" Selected="ComboBoxItem_Selected_3"></ComboBoxItem>
             <ComboBoxItem  Content="0-9,99%" Selected="ComboBoxItem_Selected"></ComboBoxItem>
             <ComboBoxItem  Content="10-14,99%" Selected="ComboBoxItem_Selected_1"></ComboBoxItem>
             <ComboBoxItem  Content="15-100%" Selected="ComboBoxItem_Selected_2"></ComboBoxItem>
         </ComboBox>
-        <Label Content="поиск" HorizontalAlignment="Left" Margin="175,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.524,-0.005"/>
-        <TextBox x:Name="search" HorizontalAlignment="Left" Height="22" Margin="247,85,0,0" TextChanged="search_TextChanged"  VerticalAlignment="Top" Width="97"/>
+        <Label Content="поиск" HorizontalAlignment="Left" Margin="256,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.524,-0.005"/>
+        <TextBox x:Name="search" HorizontalAlignment="Left" Height="22" Margin="303,85,0,0" TextChanged="search_TextChanged"  VerticalAlignment="Top" Width="97"/>
         <Label Content="Товаров:" HorizontalAlignment="Left" Margin="34,257,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBlock x:Name="kolVo" HorizontalAlignment="Left" Height="26" Margin="120,262,0,0" Grid.Row="1" VerticalAlignment="Top" Width="55"/>
+        <TextBlock x:Name="kolVo" HorizontalAlignment="Left" Height="20" Margin="93,262,0,0" Grid.Row="1" VerticalAlignment="Top" Width="29" Foreground="Black" Cursor="AppStarting" TextAlignment="Center"/>
+        <Label Content="из" HorizontalAlignment="Left" Height="25" Margin="122,257,0,0" Grid.Row="1" VerticalAlignment="Top" Width="23"/>
+        <TextBlock x:Name="all"  HorizontalAlignment="Left" Height="20" Margin="150,262,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="29" TextAlignment="Center" />
 
 
     </Grid>
