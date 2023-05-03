@@ -9,8 +9,8 @@
 <<<<<<< HEAD
         <EntityTypeShape EntityType="user24Model.OrderProduct" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
 =======
-        <EntityTypeShape EntityType="user24Model.OrderProduct" Width="1.5" PointX="7.75" PointY="2.625" IsExpanded="true" />
->>>>>>> Добавьте файлы проекта.
+        
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Добавьте файлы проекта.
         <EntityTypeShape EntityType="user24Model.OrderStatus" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="user24Model.PickupPoint" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="user24Model.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />

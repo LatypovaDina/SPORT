@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-<<<<<<< HEAD
-=======
 using System.Reflection.Emit;
->>>>>>> Добавьте файлы проекта.
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,7 +25,7 @@ namespace DEMO
 		public Client()
 		{
 			InitializeComponent();
-<<<<<<< HEAD
+
 			ue = new user24Entities();
 			ue.Product.Load(); // загружаем данные
 			tovarki.DataContext = ue.Product.ToList(); // устанавливаем привязку к кэшу
@@ -36,15 +33,7 @@ namespace DEMO
 
 			
 		}
-
-=======
-			ue.Product.Load(); // загружаем данные
-			tovarki.DataContext = ue.Product.ToList(); // устанавливаем привязку к кэшу
-			vidacha.ItemsSource = Convert.ToString(ue.PickupPoint.ToList());
-			kolVo.Text = Convert.ToString(tovarki.Items.Count);
-			
-
-		}
+		
 		private void viborka()
 		{
 			if (Convert.ToInt32(skid.Text) > 15)
@@ -52,7 +41,7 @@ namespace DEMO
 				name.Background = Brushes.DarkRed;
 			}
 		}
->>>>>>> Добавьте файлы проекта.
+
 		private void exit_Click(object sender, RoutedEventArgs e)
 		{
 			MainWindow mw = new MainWindow();
@@ -98,26 +87,23 @@ namespace DEMO
 		private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount < 10).ToList();
-<<<<<<< HEAD
-=======
+
 			kolVo.Text = tovarki.Items.Count.ToString();
->>>>>>> Добавьте файлы проекта.
+
 		}
 
 		private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount < 15 && x.ProductMaxDiscountAmount > 10).ToList();
-<<<<<<< HEAD
-=======
+
 			kolVo.Text = tovarki.Items.Count.ToString();
->>>>>>> Добавьте файлы проекта.
+
 		}
 
 		private void ComboBoxItem_Selected_2(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount > 15).ToList();
-<<<<<<< HEAD
-=======
+
 			kolVo.Text = tovarki.Items.Count.ToString();
 		}
 
@@ -143,7 +129,7 @@ namespace DEMO
 			}
 			else
 			{ name.Background = Brushes.White; }
->>>>>>> Добавьте файлы проекта.
+
 		}
 	}
 }

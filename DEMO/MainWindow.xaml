@@ -16,10 +16,9 @@
         <Label Content="Добро пожаловать в ООО 'СПОРТ'" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top"/>
 
         <Image Margin="235,82,518,310" Source="/logo.png" Stretch="Fill"/>
-<<<<<<< HEAD
-=======
+
         <Label x:Name="load" HorizontalAlignment="Left" Height="40" Margin="258,10,0,0" VerticalAlignment="Top" Width="273" FontSize="20" Background="{x:Null}" Foreground="#FFDA1212"/>
->>>>>>> Добавьте файлы проекта.
+
 
     </Grid>
 </Window>
