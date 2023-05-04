@@ -42,6 +42,6 @@ namespace DEMO
         public virtual ProductSupplier ProductSupplier { get; set; }
         public virtual UnitType UnitType { get; set; }
 		[NotMapped]
-		public string ProductPhotoFromResources => "C:\\Users\\latdi\\source\\repos\\DEMO\\DEMO\\Resource\\" + ProductPhoto;
+		public string ProductPhotoFromResources => "Resource/" + ProductPhoto;
 	}
 }

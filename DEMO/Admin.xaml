@@ -11,6 +11,26 @@
 
         <Image Margin="10,10,743,382" Source="/logo.png" Stretch="Fill" RenderTransformOrigin="1.17,0.713"/>
         <Button x:Name="exit" Content="выход" HorizontalAlignment="Left" Margin="674,14,0,0" Click="exit_Click" VerticalAlignment="Top" Width="116" Height="34"/>
+        <DataGrid x:Name="tovarki" ItemsSource="{Binding ''}" Margin="34,74,350,61" MouseDoubleClick="tovarki_MouseDoubleClick"  RowDetailsVisibilityMode="VisibleWhenSelected"/>
+        <Label Content="ID:" HorizontalAlignment="Left" Margin="500,147,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="id" Text="{Binding SelectedItem.ProductID, ElementName=tovarki}" HorizontalAlignment="Left" Margin="616,147,0,0" VerticalAlignment="Top" Height="22" Width="157"/>
+        <Label Content="Название:" HorizontalAlignment="Left" Margin="500,170,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="name"  Text="{Binding SelectedItem.ProductName, ElementName=tovarki}" HorizontalAlignment="Left" Margin="616,174,0,0" VerticalAlignment="Top" Width="157" Height="18" />
+        <Label Content="Цена:" HorizontalAlignment="Left" Margin="500,193,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="cost"  Text="{Binding SelectedItem.ProductCost, ElementName=tovarki}" HorizontalAlignment="Left" Margin="616,197,0,0" VerticalAlignment="Top" Width="157" Height="18" />
+        <Label Content="Описание:" HorizontalAlignment="Left" Margin="500,216,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="opisaniye"   Text="{Binding SelectedItem.ProductDescription, ElementName=tovarki}" HorizontalAlignment="Left" Margin="616,220,0,0" VerticalAlignment="Top" Width="157" Height="21"/>
+        <Label Content="Производитель:" HorizontalAlignment="Left" Margin="500,242,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="proizvod"  Text="{Binding SelectedItem.ProductManufacturerID, ElementName=tovarki}" HorizontalAlignment="Left" Margin="616,246,0,0" VerticalAlignment="Top" Width="157" Height="21" />
+
+        <Label Content="Скидончик:" HorizontalAlignment="Left" Margin="500,268,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="skid" Text="{Binding SelectedItem.ProductMaxDiscountAmount, ElementName=tovarki}" HorizontalAlignment="Left" Margin="616,272,0,0" VerticalAlignment="Top" Width="157" Height="19"/>
+        <Label Content="Товаров:" HorizontalAlignment="Left" Margin="34,378,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="kolVo" HorizontalAlignment="Left" Height="20" Margin="93,383,0,0" VerticalAlignment="Top" Width="29" Foreground="Black" Cursor="AppStarting" TextAlignment="Center"/>
+        <Label Content="из" HorizontalAlignment="Left" Height="25" Margin="122,378,0,0" VerticalAlignment="Top" Width="23"/>
+        <TextBlock x:Name="all"  HorizontalAlignment="Left" Height="20" Margin="150,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="29" TextAlignment="Center" />
+        <Button x:Name="newTovar" Content="добавить товар" HorizontalAlignment="Left" Height="50" Margin="554,323,0,0" VerticalAlignment="Top" Width="140" Click="newTovar_Click"/>
+      
 
     </Grid>
 </Window>

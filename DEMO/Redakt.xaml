@@ -1,0 +1,58 @@
+﻿<Window x:Class="DEMO.Redakt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DEMO"
+        mc:Ignorable="d"
+        Title="Redakt" Height="450" Width="800">
+    <Grid>
+        <Label Content="Добро пожаловать в ООО 'СПОРТ'" HorizontalAlignment="Left" Margin="74,18,0,0" VerticalAlignment="Top"/>
+
+        <Image Margin="10,10,743,382" Source="/logo.png" Stretch="Fill" RenderTransformOrigin="1.17,0.713"/>
+        <Button x:Name="exit" Content="назад" HorizontalAlignment="Left" Margin="674,14,0,0" Click="exit_Click" VerticalAlignment="Top" Width="116" Height="34"/>
+        <Label Content="ID:" HorizontalAlignment="Left" Margin="251,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.201,-0.087"/>
+        <TextBox x:Name="id" HorizontalAlignment="Left" Margin="359,82,0,0" VerticalAlignment="Top" Height="22" Width="157"/>
+
+        <Label Content="Артикль:" HorizontalAlignment="Left" Margin="243,107,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.201,-0.087"/>
+        <TextBox x:Name="art"  HorizontalAlignment="Left" Margin="359,110,0,0" VerticalAlignment="Top" Height="22" Width="157"/>
+
+        <Button x:Name="new" Content="Добавить" HorizontalAlignment="Left" Margin="606,207,0,0" VerticalAlignment="Top" Height="34" Width="149" Click="new_Click" RenderTransformOrigin="1.094,0.654"/>
+        <Label Content="Название:" HorizontalAlignment="Left" Margin="242,133,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="name"  HorizontalAlignment="Left" Margin="359,137,0,0" VerticalAlignment="Top" Width="158" Height="18" />
+
+        <Label Content="Мера измерения:" HorizontalAlignment="Left" Margin="243,156,0,0" VerticalAlignment="Top"/>
+        <ComboBox DisplayMemberPath="UnitTypeName" x:Name="mera" HorizontalAlignment="Left" Margin="359,160,0,0" VerticalAlignment="Top" Width="157" Height="22" />
+
+        <Label Content="Цена:" HorizontalAlignment="Left" Margin="242,182,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="cost"   HorizontalAlignment="Left" Margin="359,187,0,0" VerticalAlignment="Top" Width="158" Height="18" />
+
+        <Label Content="Макс скидончик:" HorizontalAlignment="Left" Margin="242,207,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="maxSkid"  HorizontalAlignment="Left" Margin="359,210,0,0" VerticalAlignment="Top" Width="158" Height="19"/>
+
+        <Label Content="Производитель:" HorizontalAlignment="Left" Margin="243,233,0,0" VerticalAlignment="Top"/>
+        <ComboBox DisplayMemberPath="ProductManufacturerName" x:Name="proizvoditel" HorizontalAlignment="Left" Margin="360,234,0,0" VerticalAlignment="Top" Width="157" Height="22" SelectionChanged="proizvoditel_SelectionChanged"/>
+
+        <Label Content="Поставщик:" HorizontalAlignment="Left" Margin="243,259,0,0" VerticalAlignment="Top"/>
+        <ComboBox DisplayMemberPath="ProductSupplierName" x:Name="postavchik" HorizontalAlignment="Left" Margin="360,261,0,0" VerticalAlignment="Top" Width="157" Height="22"/>
+
+        <Label Content="Категория:" HorizontalAlignment="Left" Margin="243,288,0,0" VerticalAlignment="Top"/>
+        <ComboBox DisplayMemberPath="ProductCategoryName" x:Name="category" HorizontalAlignment="Left" Margin="360,288,0,0" VerticalAlignment="Top" Width="157" Height="22"/>
+
+        <Label Content="Cкидончик:" HorizontalAlignment="Left" Margin="244,312,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="skid" HorizontalAlignment="Left" Margin="360,315,0,0" VerticalAlignment="Top" Width="158" Height="19"/>
+
+        <Label Content="Количество:" HorizontalAlignment="Left" Margin="243,336,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="kolVo"  HorizontalAlignment="Left" Margin="360,339,0,0" VerticalAlignment="Top" Width="158" Height="19"/>
+
+        <Label Content="Описание:" HorizontalAlignment="Left" Margin="243,359,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="opisaniye"   HorizontalAlignment="Left" Margin="360,363,0,0" VerticalAlignment="Top" Width="158" Height="21"/>
+
+        <Image HorizontalAlignment="Left" Height="198" Margin="34,82,0,0" VerticalAlignment="Top" Width="204"/>
+        <Button x:Name="delete" Content="Удалить" HorizontalAlignment="Left" Height="29" Click="delete_Click" Margin="606,256,0,0" VerticalAlignment="Top" Width="149"/>
+
+
+
+
+    </Grid>
+</Window>
