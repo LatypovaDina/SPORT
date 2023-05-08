@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DEMO"
         mc:Ignorable="d"
-        Title="CAPTCHA" Height="360" Width="371">
+        Title="CAPTCHA" Height="360" Width="371"
+         MaxHeight="360"
+        MaxWidth="371">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

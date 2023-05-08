@@ -32,9 +32,9 @@ namespace DEMO
 
 		private void vhod_Click(object sender, RoutedEventArgs e)
 		{
-
 			using (user24Entities ue = new user24Entities())
 			{
+				string idd = (from ut in ue.User where ut.UserLogin == login.Text && ut.UserPassword == password.Text select ut.UserSurname + ut.UserName + ut.UserPatronymic).FirstOrDefault();
 				User user = ue.User.FirstOrDefault();
 				if (ue.User.Any(i => i.UserLogin == login.Text))
 				{
@@ -42,18 +42,29 @@ namespace DEMO
 					{
 						if (ue.User.Any(i => i.UserLogin == login.Text && i.UserPassword == password.Text && i.RoleID == 1))
 						{
-							//Если роль - Клиент, то открываем страницу для клиента
+								//Если роль - Клиент, то открываем страницу для клиента
 							Client cli = new Client();
 							cli.Show();
-							//User u = ue.User.First(x => x.UserID == i.UserID);
-							cli.FIO.Content = user.UserSurname + user.UserName + user.UserPatronymic;
+							cli.FIO.Content = idd;
+							int iddi = (from ut in ue.User where ut.UserLogin == login.Text select ut.UserID).FirstOrDefault();
+							int oid = Convert.ToInt32((from ut in ue.Order where ut.UserID == iddi select ut.UserID).FirstOrDefault());
+							if (iddi == oid)
+							{
+								cli.zakaz.Visibility = Visibility.Visible;
+							}
+							else
+							{
+								cli.zakaz.Visibility = Visibility.Hidden;
+							}
 							this.Close();
+							
 						}
 						//Если роль - Админ, то открываем страницу для админа
 						if (ue.User.Any(i => i.UserLogin == login.Text && i.UserPassword == password.Text && i.RoleID == 2))
 						{
 							Admin adm = new Admin();
 							adm.Show();
+							
 							this.Close();
 						}
 						//Если роль - Менеджер, то открываем страницу для менеджера
@@ -61,6 +72,7 @@ namespace DEMO
 						{
 							Manager man = new Manager();
 							man.Show();
+							man.FIO.Content = idd;
 							this.Close();
 						}
 					}

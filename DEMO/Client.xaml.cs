@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,16 +27,12 @@ namespace DEMO
 		public Client()
 		{
 			InitializeComponent();
-
-			ue = new user24Entities();
-			//ue.Product.Load(); // загружаем данные
 			tovarki.ItemsSource = ue.Product.ToList(); // устанавливаем привязку к кэшу
 			vidacha.ItemsSource = ue.PickupPoint.ToList();
 			all.Text = ue.Product.Count().ToString();
 			kolVo.Text = ue.Product.Count().ToString();
-
 		}
-		
+	
 		private void viborka()
 		{
 			if (Convert.ToInt32(skid.Text) > 15)
@@ -109,7 +107,6 @@ namespace DEMO
 			kolVo.Text = ue.Product.Count().ToString();
 		}
 		
-
 		private void search_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductName == search.Text).ToList();
@@ -124,6 +121,74 @@ namespace DEMO
 			}
 			else
 			{ name.Background = Brushes.White; }
+		}
+
+		private void MenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			if (vidacha.SelectedItem != null)
+			{
+				using (user24Entities db = new user24Entities())
+				{
+					int idd = (from dt in db.User where dt.UserSurname + dt.UserName + dt.UserPatronymic == FIO.Content.ToString() select dt.UserID).FirstOrDefault();
+					int oid = Convert.ToInt32((from dt in db.Order where dt.UserID == idd select dt.UserID).FirstOrDefault());
+					Random rnd = new Random();
+					int i = rnd.Next(0, 3000);
+					int pid = (from ut in db.PickupPoint where ut.Address == vidacha.Text select ut.PickupPointID).FirstOrDefault();
+					if (idd != oid)
+					{
+						Order order = new Order { OrderStatusID = 1, PickupPointID = pid, OrderCreateDate = DateTime.Now, OrderDeliveryDate = DateTime.UtcNow.AddDays(6), UserID = idd, OrderGetCode = i };
+						db.Order.Add(order);
+						int a = order.OrderID;
+						db.SaveChanges();   // сохранение изменений
+						zakaz.Visibility = Visibility.Visible;
+
+						OrderProduct op = new OrderProduct { OrderID = a, ProductID = Convert.ToInt32(id.Text),  Count = 1 };
+						db.OrderProduct.Add(op);
+						db.SaveChanges();
+					}
+					else
+					{
+						int ord = (from dt in db.Order where dt.UserID == idd select dt.OrderID).FirstOrDefault();
+						OrderProduct op = new OrderProduct { OrderID = ord, ProductID = Convert.ToInt32(id.Text), Count = 1 };
+						db.OrderProduct.Add(op);
+						db.SaveChanges();
+					}
+
+
+				}
+				MessageBox.Show("В заказ добавлено");
+			}
+			else { MessageBox.Show("Вы забыли выбрать пункт выдачи"); }
+			
+		}
+		private void MenuItem_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+		{
+		}
+		private void tovarki_MouseEnter(object sender, MouseEventArgs e)
+		{
+			
+		}
+		public class Real
+		{
+			public int Number { get; set; }
+		}
+		private void zakaz_Click(object sender, RoutedEventArgs e)
+		{
+
+			int idd = (from dt in ue.User where dt.UserSurname + dt.UserName + dt.UserPatronymic == FIO.Content.ToString() select dt.UserID).FirstOrDefault();
+			int oid = Convert.ToInt32((from dt in ue.Order where dt.UserID == idd select dt.OrderID).FirstOrDefault());
+			Zakaz zak = new Zakaz();
+			zak.Show();
+			zak.FIO.Content = FIO.Content;
+
+			zak.zakazi.DataContext = ue.OrderProduct.Where(x => x.OrderID == oid).ToList();
+			
+			int sum = 0;
+			for (int i = 0; i < zak.zakazi.Items.Count; i++)
+			{
+				sum += Convert.ToInt32((zak.zakazi.Items[i] as Real).Number);
+			}
+			zak.summ.Text = sum.ToString();
 
 		}
 	}

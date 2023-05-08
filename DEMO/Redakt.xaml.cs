@@ -49,7 +49,6 @@ namespace DEMO
 
 		private void new_Click(object sender, RoutedEventArgs e)
 		{
-			
 			int idd = (from ut in ue.UnitType where ut.UnitTypeName == mera.Text select ut.UnitTypeID).FirstOrDefault();
 			int mid = (from ut in ue.ProductManufacturer where ut.ProductManufacturerName == proizvoditel.Text.ToString() select ut.ProductManufacturerID).FirstOrDefault();
 			int sid = (from ut in ue.ProductSupplier where ut.ProductSupplierName == postavchik.Text.ToString() select ut.ProductSupplierID).FirstOrDefault();
@@ -99,29 +98,35 @@ namespace DEMO
 			}
 			else if (@new.Content.ToString() == "Добавить")
 			{
-
-				if (int.Parse(skid.Text) < int.Parse(maxSkid.Text))
+				if (art.Text != "" && name.Text != "" && mera.Text != "" && cost.Text != "" && maxSkid.Text != "" && proizvoditel.Text != "" && postavchik.Text != "" && category.Text != "" && skid.Text != "" && kolVo.Text != ""	 && opisaniye.Text != "")
 				{
 
-					if (int.Parse(kolVo.Text) > 0)
+					if (int.Parse(skid.Text) < int.Parse(maxSkid.Text))
 					{
-						using (user24Entities db = new user24Entities())
+
+						if (int.Parse(kolVo.Text) > 0)
 						{
+							using (user24Entities db = new user24Entities())
+							{
 
-							Product prod = new Product { ProductArticleNumber = art.Text, ProductName = name.Text, UnitTypeID = idd, ProductCost = int.Parse(cost.Text), ProductMaxDiscountAmount = byte.Parse(maxSkid.Text), ProductManufacturerID = mid, ProductSupplierID = sid, ProductCategoryID = cid, ProductDiscountAmount = byte.Parse(skid.Text), ProductQuantityInStock = Convert.ToInt32(kolVo.Text), ProductDescription = opisaniye.Text, ProductPhoto = null };
-							db.Product.Add(prod);
-							db.SaveChanges();   // сохранение изменений
+								Product prod = new Product { ProductArticleNumber = art.Text, ProductName = name.Text, UnitTypeID = idd, ProductCost = int.Parse(cost.Text), ProductMaxDiscountAmount = byte.Parse(maxSkid.Text), ProductManufacturerID = mid, ProductSupplierID = sid, ProductCategoryID = cid, ProductDiscountAmount = byte.Parse(skid.Text), ProductQuantityInStock = Convert.ToInt32(kolVo.Text), ProductDescription = opisaniye.Text, ProductPhoto = null };
+								db.Product.Add(prod);
+								db.SaveChanges();   // сохранение изменений
 
+							}
+							MessageBox.Show("Добавлен");
 						}
-						MessageBox.Show("Добавлен");
+						else
+						{ MessageBox.Show("Количество не может быть отрицательным"); }
 					}
 					else
-					{ MessageBox.Show("Количество не может быть отрицательным"); }
+					{
+						MessageBox.Show("Скидка не должна превышать максимальную");
+					}
 				}
-
 				else
 				{
-					MessageBox.Show("Скидка не должна превышать максимальную");
+					MessageBox.Show("Вы забыли заполнить поля");
 				}
 
 			}	

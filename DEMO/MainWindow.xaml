@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DEMO"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+         MaxHeight="450"
+        MaxWidth="800">
     <Grid>
         <Label Content="логин" HorizontalAlignment="Left" Margin="328,137,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="login" HorizontalAlignment="Left" Margin="374,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
