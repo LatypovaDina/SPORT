@@ -177,19 +177,23 @@ namespace DEMO
 
 			int idd = (from dt in ue.User where dt.UserSurname + dt.UserName + dt.UserPatronymic == FIO.Content.ToString() select dt.UserID).FirstOrDefault();
 			int oid = Convert.ToInt32((from dt in ue.Order where dt.UserID == idd select dt.OrderID).FirstOrDefault());
-			Zakaz zak = new Zakaz();
+
+			var ord = (from ut in ue.OrderProduct where ut.OrderID == oid select ut.OrderID).FirstOrDefault();
+			var p = (from ut in ue.OrderProduct from dt in ue.Order where ut.OrderID == dt.OrderID select ut.ProductID).ToList();
+			//var ret = (Order)tovarki.SelectedItem;
+
+			Zakaz zak = new Zakaz(ord);
 			zak.Show();
 			zak.FIO.Content = FIO.Content;
 
 			zak.zakazi.DataContext = ue.OrderProduct.Where(x => x.OrderID == oid).ToList();
 			
-			int sum = 0;
-			for (int i = 0; i < zak.zakazi.Items.Count; i++)
+			foreach (int a in p)
 			{
-				sum += Convert.ToInt32((zak.zakazi.Items[i] as Real).Number);
+				zak.summ.Text = (from ut in ue.Product where ut.ProductID == a select ut.ProductCost).ToList().Sum().ToString();
+				zak.skidka.Text = (from ut in ue.Product where ut.ProductID == a select ut.ProductDiscountAmount).ToList().Max().ToString();
 			}
-			zak.summ.Text = sum.ToString();
-
+			
 		}
 	}
 }

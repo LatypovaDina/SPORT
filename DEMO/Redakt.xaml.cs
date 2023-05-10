@@ -28,6 +28,7 @@ namespace DEMO
 			}
 
 		}
+		
 		private void InitComboBoxes()
 		{
 			category.ItemsSource = ue.ProductCategory.ToList();
