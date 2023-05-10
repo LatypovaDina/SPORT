@@ -23,11 +23,15 @@ namespace DEMO
 	public partial class Zakaz : Window
 	{
 		public user24Entities ue = new user24Entities();
+		Order ord1 = new Order();
 		int op1;
-		public Zakaz(int op)
+		public Order CurrentOrder { get; set; }
+		public Zakaz(int op, Order ord)
 		{
 			InitializeComponent();
+			
 			op1 = op;
+			CurrentOrder = ord;
 			vidacha.ItemsSource = ue.PickupPoint.ToList();
 
 			
@@ -64,11 +68,11 @@ namespace DEMO
 			using (user24Entities db = new user24Entities())
 			{
 				int pid = (from ut in db.PickupPoint where ut.Address == vidacha.Text select ut.PickupPointID).FirstOrDefault();
-				int ord = (from ut in db.OrderProduct where ut.OrderID == op1 select ut.OrderID).FirstOrDefault();
+				int ordd = (from ut in db.OrderProduct where ut.OrderID == op1 select ut.OrderID).FirstOrDefault();
 				int idd = Convert.ToInt32((from ut in db.Order where ut.OrderID == op1 select ut.UserID).FirstOrDefault());
 				Random rnd = new Random();
 				int i = rnd.Next(0, 3000);
-				if (ord == op1)
+				if (ordd == op1)
 				{
 					Order order = new Order();
 					order.OrderStatusID = 1;
@@ -101,6 +105,59 @@ namespace DEMO
 				opisaniye.Text = (from ut in ue.Product where ut.ProductID.ToString() == id.Text select ut.ProductDescription).FirstOrDefault().ToString();
 			}
 
+		}
+		private void RefreshWindow()
+		{
+			{
+				this.CurrentOrder = new Order();
+				//this.OrderProduct = new List<OrderProduct>();
+
+			}
+		}
+
+		private async Task PrintOrderCard()
+		{
+			var orders = CurrentOrder;
+			var app = new Microsoft.Office.Interop.Excel.Application
+			{
+				SheetsInNewWorkbook = 1
+			};
+
+
+			RefreshWindow(); 
+			var workbook = app.Workbooks.Add(Type.Missing);
+
+			Microsoft.Office.Interop.Excel.Worksheet worksheet = app.Worksheets.Item[1];
+			worksheet.Name = "Card";
+
+			worksheet.Cells[1][1] = "Order number";
+			worksheet.Cells[1][2] = "Product list";
+			worksheet.Cells[1][3] = "Total cost";
+
+			worksheet.Cells[2][1] = orders.OrderID;
+
+			var fullProductList = string.Empty;
+			fullProductList = orders.OrderProduct.Aggregate(fullProductList,
+				(current, product) => current + $"{product.Product.ProductName}\n");
+			worksheet.Cells[2][2] = fullProductList;
+			worksheet.Cells[2][3] = orders.OrderProduct.Sum(p => p.Product.ProductCost);
+
+			worksheet.Columns.AutoFit();
+
+			app.Visible = true;
+
+			app.Application.ActiveWorkbook.SaveAs(@"C:\Users\latdi\source\repos\DEMO\DEMO\test.xlsx");
+
+			var excelDocument = app.Workbooks.Open(@"C:\Users\latdi\source\repos\DEMO\DEMO\test.xlsx");
+
+			excelDocument.ExportAsFixedFormat(Microsoft.Office.Interop.Excel.XlFixedFormatType.xlTypePDF, @"C:\Users\latdi\source\repos\DEMO\DEMO\test.pdf");
+			excelDocument.Close(false, "", false);
+			app.Quit();
+		}
+
+		private void talon_Click(object sender, RoutedEventArgs e)
+		{
+			PrintOrderCard();
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace DEMO
 	public partial class Admin : Window
 	{
 		public user24Entities ue = new user24Entities();
+		
 		public Admin()
 		{
 			InitializeComponent();

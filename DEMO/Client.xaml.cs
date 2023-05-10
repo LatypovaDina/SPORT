@@ -178,11 +178,12 @@ namespace DEMO
 			int idd = (from dt in ue.User where dt.UserSurname + dt.UserName + dt.UserPatronymic == FIO.Content.ToString() select dt.UserID).FirstOrDefault();
 			int oid = Convert.ToInt32((from dt in ue.Order where dt.UserID == idd select dt.OrderID).FirstOrDefault());
 
-			var ord = (from ut in ue.OrderProduct where ut.OrderID == oid select ut.OrderID).FirstOrDefault();
+			int ord = (from ut in ue.OrderProduct where ut.OrderID == oid select ut.OrderID).FirstOrDefault();
 			var p = (from ut in ue.OrderProduct from dt in ue.Order where ut.OrderID == dt.OrderID select ut.ProductID).ToList();
+			var order = ue.Order.ToList().Find(x => x.OrderID == ord);
 			//var ret = (Order)tovarki.SelectedItem;
 
-			Zakaz zak = new Zakaz(ord);
+			Zakaz zak = new Zakaz(ord, order);
 			zak.Show();
 			zak.FIO.Content = FIO.Content;
 

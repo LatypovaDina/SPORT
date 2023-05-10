@@ -36,6 +36,7 @@
         <TextBox x:Name="kolVo"  HorizontalAlignment="Left" Margin="334,149,0,0" VerticalAlignment="Top" Width="56" Height="20" FontSize="10"/>
         <TextBox x:Name="proizvoditel" HorizontalAlignment="Left" Height="23" Margin="108,214,0,0" VerticalAlignment="Top" Width="282"/>
         <Button Content="Оформить" HorizontalAlignment="Left" Height="49" Margin="255,311,0,0" VerticalAlignment="Top" Width="144" Click="Button_Click"/>
+        <Button x:Name="talon" Click="talon_Click"  Content="талон" HorizontalAlignment="Left" Height="25" Margin="255,368,0,0" VerticalAlignment="Top" Width="144"/>
 
 
     </Grid>
