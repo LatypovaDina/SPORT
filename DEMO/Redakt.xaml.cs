@@ -28,7 +28,9 @@ namespace DEMO
 			}
 
 		}
-		
+		/// <summary>
+		/// Заполнение ComboBox
+		/// </summary>
 		private void InitComboBoxes()
 		{
 			category.ItemsSource = ue.ProductCategory.ToList();
@@ -36,18 +38,22 @@ namespace DEMO
 			mera.ItemsSource = ue.UnitType.ToList();
 			postavchik.ItemsSource = ue.ProductSupplier.ToList();
 		}
-			private void exit_Click(object sender, RoutedEventArgs e)
+		/// <summary>
+		/// Обработка нажатия "Выход"
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void exit_Click(object sender, RoutedEventArgs e)
 		{
 			Admin adm = new Admin();
 			adm.Show();
 			this.Close();
         }
-
-		private void redact_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
+		/// <summary>
+		/// редактирование/добавление товара
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void new_Click(object sender, RoutedEventArgs e)
 		{
 			int idd = (from ut in ue.UnitType where ut.UnitTypeName == mera.Text select ut.UnitTypeID).FirstOrDefault();
@@ -93,9 +99,7 @@ namespace DEMO
 					{
 						MessageBox.Show("Скидка не должна превышать максимальную");
 					}
-
 				}
-				
 			}
 			else if (@new.Content.ToString() == "Добавить")
 			{
@@ -132,12 +136,11 @@ namespace DEMO
 
 			}	
 		}
-
-		private void proizvoditel_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-
-		}
-
+		/// <summary>
+		///  удаление товара
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void delete_Click(object sender, RoutedEventArgs e)
 		{
 			using (var db = new user24Entities())

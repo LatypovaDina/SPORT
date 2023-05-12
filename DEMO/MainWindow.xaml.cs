@@ -29,7 +29,11 @@ namespace DEMO
 		{
 			InitializeComponent();
 		}
-
+		/// <summary>
+		/// авторизация
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void vhod_Click(object sender, RoutedEventArgs e)
 		{
 			using (user24Entities ue = new user24Entities())
@@ -42,7 +46,7 @@ namespace DEMO
 					{
 						if (ue.User.Any(i => i.UserLogin == login.Text && i.UserPassword == password.Text && i.RoleID == 1))
 						{
-								//Если роль - Клиент, то открываем страницу для клиента
+							//Если роль - Клиент, то открываем страницу для клиента
 							Client cli = new Client();
 							cli.Show();
 							cli.FIO.Content = idd;
@@ -94,12 +98,19 @@ namespace DEMO
 
 				}
 			}
-		
+		/// <summary>
+		/// блокировка системы
+		/// </summary>
 		public void Block()
 		{
 			load.Content = "ПОДОЖДИТЕ! система заблокирована на 10 секунд";
 			Task.WaitAll(new Task[] { Task.Delay(10000) });
 		}
+		/// <summary>
+		/// вход в качестве гостя
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void gost_Click(object sender, RoutedEventArgs e)
 		{
 			Gost go = new Gost();

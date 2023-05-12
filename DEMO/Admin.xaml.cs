@@ -23,15 +23,19 @@ namespace DEMO
 	{
 		public user24Entities ue = new user24Entities();
 		
+
 		public Admin()
 		{
 			InitializeComponent();
 			tovarki.ItemsSource = ue.Product.ToList(); // устанавливаем привязку к кэшу
-			
 			all.Text = ue.Product.Count().ToString();
 			kolVo.Text = ue.Product.Count().ToString();
 		}
-
+		/// <summary>
+		/// обработка нажатия кнопки "выход"
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void exit_Click(object sender, RoutedEventArgs e)
 		{
 			MainWindow mw = new MainWindow();
@@ -39,11 +43,11 @@ namespace DEMO
 			this.Close();
         }
 
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-
-        }
-
+		/// <summary>
+		/// обработка нажатия двойным кликом на поле в списке
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void tovarki_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
 			var ret = (Product)tovarki.SelectedItem;
@@ -78,7 +82,11 @@ namespace DEMO
 
 			}
 		}
-
+		/// <summary>
+		/// обработка нажатия кнопки "добавить товар"
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void newTovar_Click(object sender, RoutedEventArgs e)
 		{
 			Redakt red = new Redakt();
@@ -89,9 +97,5 @@ namespace DEMO
 			
 		}
 
-		private void Button_Click_1(object sender, RoutedEventArgs e)
-		{
-
-		}
 	}
 }

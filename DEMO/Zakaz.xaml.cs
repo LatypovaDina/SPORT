@@ -29,13 +29,13 @@ namespace DEMO
 		public Zakaz(int op, Order ord)
 		{
 			InitializeComponent();
-			
 			op1 = op;
 			CurrentOrder = ord;
 			vidacha.ItemsSource = ue.PickupPoint.ToList();
-
-			
 		}
+		/// <summary>
+		/// обновление данных
+		/// </summary>
 		public void Update()
 		{
 			int idd = (from dt in ue.User where dt.UserSurname + dt.UserName + dt.UserPatronymic == FIO.Content.ToString() select dt.UserID).FirstOrDefault();
@@ -49,6 +49,11 @@ namespace DEMO
 				skidka.Text = (from ut in ue.Product where ut.ProductID == a select ut.ProductDiscountAmount).ToList().Max().ToString();
 			}
 		}
+		/// <summary>
+		/// удаление 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void delete_Click(object sender, RoutedEventArgs e)
 		{
 			using (var db = new user24Entities())
@@ -56,15 +61,17 @@ namespace DEMO
 				var deleted = db.OrderProduct.ToList().Find(pr => pr.ProductID.ToString() == id.Text);
 				db.OrderProduct.Remove(deleted);
 				db.SaveChanges();
-
 			}
 			MessageBox.Show("Товар удален");
 			Update();
 		}
-
+		/// <summary>
+		/// оформление заказа
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-
 			using (user24Entities db = new user24Entities())
 			{
 				int pid = (from ut in db.PickupPoint where ut.Address == vidacha.Text select ut.PickupPointID).FirstOrDefault();
@@ -88,33 +95,39 @@ namespace DEMO
 			}
 			MessageBox.Show("Оформлено");
 		}
-
-
+		/// <summary>
+		/// заполнение данными полей окна
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void zakazi_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
 			int currentItem = zakazi.SelectedIndex;
 			if (currentItem != -1)
 			{
-				cost.Text = (from ut in ue.Product where ut.ProductID.ToString() == id.Text select ut.ProductCost).FirstOrDefault().ToString();
-				name.Text = (from ut in ue.Product where ut.ProductID.ToString() == id.Text select ut.ProductName).FirstOrDefault().ToString();
-				kolVo.Text = (from ut in ue.Product where ut.ProductID.ToString() == id.Text select ut.ProductQuantityInStock).FirstOrDefault().ToString();
-				art.Text = (from ut in ue.Product where ut.ProductID.ToString() == id.Text select ut.ProductArticleNumber).FirstOrDefault().ToString();
-				skid.Text = (from ut in ue.Product where ut.ProductID.ToString() == id.Text select ut.ProductDiscountAmount).FirstOrDefault().ToString();
-				maxSkid.Text = (from ut in ue.Product where ut.ProductID.ToString() == id.Text select ut.ProductMaxDiscountAmount).FirstOrDefault().ToString();
+				cost.Text = ue.Product.FirstOrDefault(ut => ut.ProductID.ToString() == id.Text).ProductCost.ToString();
+				name.Text = ue.Product.FirstOrDefault(ut => ut.ProductID.ToString() == id.Text).ProductName.ToString();
+				kolVo.Text = ue.Product.FirstOrDefault(ut => ut.ProductID.ToString() == id.Text).ProductQuantityInStock.ToString();
+				art.Text = ue.Product.FirstOrDefault(ut => ut.ProductID.ToString() == id.Text).ProductArticleNumber.ToString();
+				skid.Text = ue.Product.FirstOrDefault(ut => ut.ProductID.ToString() == id.Text).ProductDiscountAmount.ToString();
+				maxSkid.Text = ue.Product.FirstOrDefault(ut => ut.ProductID.ToString() == id.Text).ProductMaxDiscountAmount.ToString();
 				proizvoditel.Text = (from ut in ue.Product from dt in ue.ProductManufacturer where ut.ProductManufacturerID == dt.ProductManufacturerID select dt.ProductManufacturerName).FirstOrDefault().ToString();
-				opisaniye.Text = (from ut in ue.Product where ut.ProductID.ToString() == id.Text select ut.ProductDescription).FirstOrDefault().ToString();
+				opisaniye.Text = ue.Product.FirstOrDefault(ut => ut.ProductID.ToString() == id.Text).ProductDescription.ToString();
 			}
-
 		}
+		/// <summary>
+		/// обновление окна
+		/// </summary>
 		private void RefreshWindow()
 		{
 			{
 				this.CurrentOrder = new Order();
-				//this.OrderProduct = new List<OrderProduct>();
-
 			}
 		}
-
+		/// <summary>
+		/// оформление талона
+		/// </summary>
+		/// <returns></returns>
 		private async Task PrintOrderCard()
 		{
 			var orders = CurrentOrder;
@@ -154,7 +167,11 @@ namespace DEMO
 			excelDocument.Close(false, "", false);
 			app.Quit();
 		}
-
+		/// <summary>
+		/// обработчик нажатия кнопки оформления талона
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void talon_Click(object sender, RoutedEventArgs e)
 		{
 			PrintOrderCard();

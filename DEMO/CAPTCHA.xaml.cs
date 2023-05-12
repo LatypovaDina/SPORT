@@ -19,11 +19,15 @@ namespace DEMO
 	/// </summary>
 	public partial class CAPTCHA : Window
 	{
+		public MainWindow mww = new MainWindow();
 		public CAPTCHA()
 		{
 			InitializeComponent();
 			Captcha();
 		}
+		/// <summary>
+		/// генерация цифр для Captcha
+		/// </summary>
 		public void Captcha()
 		{
 			String allowchar = " ";
@@ -42,20 +46,22 @@ namespace DEMO
 			}
 			captcha.Text = pwd;
 		}
-		public MainWindow mww = new MainWindow();
+		/// <summary>
+		/// обработка нажатия кнопки "проверить"
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void check_Click(object sender, RoutedEventArgs e)
 		{
 			if (captcha.Text == cap.Text)
 			{
 				MessageBox.Show("Отлично");
 				this.Close();
-				//mww.Show();
 			}
 			else 
 			{
 				MessageBox.Show("неверно! система будет заблокирована на 10 сек");
 				this.Close();
-				//mww.Show();
 				mww.Block();
 			}
         }

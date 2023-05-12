@@ -26,7 +26,7 @@
         <Label Content="Добро пожаловать в ООО 'СПОРТ'" HorizontalAlignment="Left" Margin="74,18,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Image Margin="10,10,128,69" Source="/logo.png" Stretch="Fill"/>
 
-        <DataGrid x:Name="tovarki" ItemsSource="{Binding }" Margin="34,121,340,61" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="tovarki_SelectionChanged" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <DataGrid x:Name="tovarki" ItemsSource="{Binding }" Margin="34,121,340,61" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Добавить в заказ" Click="MenuItem_Click" ></MenuItem>
@@ -49,7 +49,7 @@
         <Label Content="Скидончик:" HorizontalAlignment="Left" Margin="291,145,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
         <TextBox x:Name="skid" Text="{Binding SelectedItem.ProductMaxDiscountAmount, ElementName=tovarki}" HorizontalAlignment="Left" Margin="407,149,0,0" VerticalAlignment="Top" Width="178" Grid.Row="1" Height="19" Grid.Column="1"/>
         <Label Content="Пункт выдачи" HorizontalAlignment="Left" Margin="291,171,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
-        <ComboBox x:Name="vidacha" DisplayMemberPath="Address" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="25" Margin="447,173,0,0" VerticalAlignment="Top" Width="138" SelectionChanged="ComboBox_SelectionChanged" Grid.Row="1" Grid.Column="1"/>
+        <ComboBox x:Name="vidacha" DisplayMemberPath="Address" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="25" Margin="447,173,0,0" VerticalAlignment="Top" Width="138" Grid.Row="1" Grid.Column="1"/>
         <Label Content="Скидки" HorizontalAlignment="Left" Margin="34,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.217,0.098"/>
         <ComboBox HorizontalAlignment="Left" Margin="104,85,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" >
             <ComboBoxItem  Content="Весь диапазон" Selected="ComboBoxItem_Selected_3"></ComboBoxItem>

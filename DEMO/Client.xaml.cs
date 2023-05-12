@@ -32,97 +32,72 @@ namespace DEMO
 			all.Text = ue.Product.Count().ToString();
 			kolVo.Text = ue.Product.Count().ToString();
 		}
-	
-		private void viborka()
-		{
-			if (Convert.ToInt32(skid.Text) > 15)
-			{
-				name.Background = Brushes.DarkRed;
-			}
-		}
-
+		/// <summary>
+		/// обработка нажатия кнопки "Выход"
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void exit_Click(object sender, RoutedEventArgs e)
 		{
 			MainWindow mw = new MainWindow();
 			mw.Show();
 			this.Close();
 		}
-
-		private void tovarki_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-
-		}
-
-		private void tovarki_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-		{
-
-		}
-
-		private void tovarki_Selected(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void tovarki_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-		{
-
-		}
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			MessageBox.Show("Ну типа че то оформили");
-		}
-
-		private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			
-		}
-
-		private void show_Click(object sender, RoutedEventArgs e)
-		{
-			
-		}
-
+		/// <summary>
+		/// вывод списка с диапазоном скидок 0-9,99%
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount < 10).ToList();
 			kolVo.Text = ue.Product.Where(x => x.ProductMaxDiscountAmount < 10).Count().ToString();
 		}
-
+		/// <summary>
+		/// вывод списка с диапазоном скидок 10-14,99%
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void ComboBoxItem_Selected_1(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount < 15 && x.ProductMaxDiscountAmount > 10).ToList();
 			kolVo.Text = ue.Product.Where(x => x.ProductMaxDiscountAmount < 15 && x.ProductMaxDiscountAmount > 10).Count().ToString();
 		}
-
+		/// <summary>
+		/// вывод списка с диапазоном скидок 15 и более%
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void ComboBoxItem_Selected_2(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductMaxDiscountAmount > 15).ToList();
 			kolVo.Text = ue.Product.Where(x => x.ProductMaxDiscountAmount > 15).Count().ToString();
 		}
-
+		/// <summary>
+		/// вывод всего содержимого списка
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void ComboBoxItem_Selected_3(object sender, RoutedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.ToList();
 			kolVo.Text = ue.Product.Count().ToString();
 		}
-		
+		/// <summary>
+		///  поиск в реальном времени по названию товара
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void search_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			tovarki.DataContext = ue.Product.Where(x => x.ProductName == search.Text).ToList();
 			kolVo.Text = ue.Product.Where(x => x.ProductName == search.Text).Count().ToString();
 		}
-
-		private void name_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (Convert.ToInt16(skid.Text) > 15)
-			{
-				name.Background = Brushes.GreenYellow;
-			}
-			else
-			{ name.Background = Brushes.White; }
-		}
-
+		/// <summary>
+		/// функция добавления в заказ через контекстное меню
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MenuItem_Click(object sender, RoutedEventArgs e)
 		{
 			if (vidacha.SelectedItem != null)
@@ -161,17 +136,16 @@ namespace DEMO
 			else { MessageBox.Show("Вы забыли выбрать пункт выдачи"); }
 			
 		}
-		private void MenuItem_ContextMenuOpening(object sender, ContextMenuEventArgs e)
-		{
-		}
-		private void tovarki_MouseEnter(object sender, MouseEventArgs e)
-		{
-			
-		}
+		
 		public class Real
 		{
 			public int Number { get; set; }
 		}
+		/// <summary>
+		/// оформление заказа
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void zakaz_Click(object sender, RoutedEventArgs e)
 		{
 
@@ -181,7 +155,6 @@ namespace DEMO
 			int ord = (from ut in ue.OrderProduct where ut.OrderID == oid select ut.OrderID).FirstOrDefault();
 			var p = (from ut in ue.OrderProduct from dt in ue.Order where ut.OrderID == dt.OrderID select ut.ProductID).ToList();
 			var order = ue.Order.ToList().Find(x => x.OrderID == ord);
-			//var ret = (Order)tovarki.SelectedItem;
 
 			Zakaz zak = new Zakaz(ord, order);
 			zak.Show();
